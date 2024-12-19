@@ -1,21 +1,19 @@
 #!/bin/bash
 
+# Run clean darkrp server with ulx admin mode
+
 # git clone https://github.com/AMD-NICK/docker-garrysmod-server.git gmod-docker
 # cd gmod-docker
-# docker build -t gmod:1 .
-# sh test.sh
+# sh start.sh
 
-mkdir -p volume ; cd volume
 mkdir -p addons data luabin gmas
 touch sv.db
-
-chown 999:999 sv.db data/ gmas/
+chown 1000:1000 sv.db data/ gmas/
 
 if [ ! -d "darkrp" ]; then
 	echo "Installing DarkRP"
 	git clone https://github.com/FPtje/DarkRP.git darkrp
 fi
-
 
 if [ ! -d "addons/ulx_ulib" ]; then
 	echo "Installing Ulx and Ulib"
@@ -35,5 +33,4 @@ if [ ! -d "addons/ulx_ulib" ]; then
 	rm -rf tmp
 fi
 
-cd .. # exit from /volume
-docker-compose up --force-recreate
+docker compose up --force-recreate

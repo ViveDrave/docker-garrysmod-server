@@ -1,9 +1,7 @@
-version: "2"
-
 services:
   gmod:
     build:
-      context: .
+      context: ..
     command: -port $PORT \
       -tickrate 32 \
       -maxplayers 16 \
