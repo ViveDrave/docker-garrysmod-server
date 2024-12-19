@@ -3,24 +3,24 @@ version: "2"
 services:
   gmod:
     build:
-        context: .
+      context: .
     command: -port $PORT \
-      -tickrate $TICKRATE \
-      -maxplayers $PLAYERS \
+      -tickrate 32 \
+      -maxplayers 16 \
       -insecure \
-      +gamemode $GAMEMODE \
-      +map $MAP
+      +gamemode darkrp \
+      +map gm_construct
     stdin_open: true
     tty: true
     ports:
       - "$PORT:$PORT/udp"
     volumes:
-      - $PWD/volume/addons:/gmodserv/garrysmod/addons/
-      - $PWD/volume/data:/gmodserv/garrysmod/data/
-      - $PWD/volume/darkrp:/gmodserv/garrysmod/gamemodes/darkrp/
-      - $PWD/volume/gmas:/gmodserv/garrysmod/cache/srcds/
-      - $PWD/volume/luabin:/gmodserv/garrysmod/lua/bin/
-      - $PWD/volume/sv.db:/gmodserv/garrysmod/sv.db
+      - $PWD/addons:/gmodserv/garrysmod/addons/
+      - $PWD/data:/gmodserv/garrysmod/data/
+      - $PWD/darkrp:/gmodserv/garrysmod/gamemodes/darkrp/
+      - $PWD/gmas:/gmodserv/garrysmod/cache/srcds/
+      - $PWD/luabin:/gmodserv/garrysmod/lua/bin/
+      - $PWD/sv.db:/gmodserv/garrysmod/sv.db
     # How to fix that docker shit?
     # https://img.qweqwe.ovh/1532284325896.png
     hostname: keklol
