@@ -1,9 +1,6 @@
 FROM ubuntu:22.04
 
 LABEL MAINTAINER="_AMD_ (me@amd-nick.me)"
-ARG STEAM_USER
-ARG STEAM_PASS
-
 # Prepare Gmod server and CSS content
 # ===================================
 
@@ -41,15 +38,10 @@ RUN curl -O https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.
 	&& tar -xvzf steamcmd_linux.tar.gz \
 	&& rm steamcmd_linux.tar.gz
 
-RUN ./steamcmd.sh \
-	+force_install_dir /gmodserv/content/css \
-	+login $STEAM_USER $STEAM_PASS \
-	+app_update 232330 -validate \
-	+quit
 
 RUN ./steamcmd.sh \
 	+force_install_dir /gmodserv \
-	+login $STEAM_USER $STEAM_PASS \
+	+login anonymous \
 	+app_update 4020 -validate \
 	+quit
 
